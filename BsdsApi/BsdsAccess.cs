@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace BsdsApi
 {
     public class BsdsAccess
     {
-        private string _bingMapsKey;
-        private string _dataSourceId = "20181f26d9e94c81acdf9496133d4f23";
-        private string _dataSourceName = "FourthCoffeeSample";
-        private string _dataEntityName = "FourthCoffeeShops";
-        private string _urlBase = "http://spatial.virtualearth.net/REST/v1/data";
-        private string _radiusSearchTemplate = "{0}/{1}/{2}/{3}?spatialFilter=nearby({4},{5},{6})&key={7}";
+        private readonly string _bingMapsKey;
+        private const string DataSourceId = "20181f26d9e94c81acdf9496133d4f23";
+        private const string DataSourceName = "FourthCoffeeSample";
+        private const string DataEntityName = "FourthCoffeeShops";
+        private const string UrlBase = "http://spatial.virtualearth.net/REST/v1/data";
+        private const string RadiusSearchTemplate = "{0}/{1}/{2}/{3}?spatialFilter=nearby({4},{5},{6})&key={7}";
 
         public BsdsAccess(string bingMapsKey)
         {
@@ -25,8 +22,8 @@ namespace BsdsApi
 
         public IList<CoffeeShop> FindByAreaRadius(double latitude, double longitude, double radiusInKms)
         {
-            string requestUrl = string.Format(_radiusSearchTemplate, _urlBase, _dataSourceId,
-                _dataSourceName, _dataEntityName, latitude.ToString(CultureInfo.InvariantCulture),
+            string requestUrl = string.Format(RadiusSearchTemplate, UrlBase, DataSourceId,
+                DataSourceName, DataEntityName, latitude.ToString(CultureInfo.InvariantCulture),
                 longitude.ToString(CultureInfo.InvariantCulture), radiusInKms.ToString(CultureInfo.InvariantCulture),
                 _bingMapsKey);
             XmlDocument response = GetXmlResponse(requestUrl);
@@ -39,9 +36,9 @@ namespace BsdsApi
             XmlNodeList entryElements = response.GetElementsByTagName("entry");
             for (int i = 0; i <= entryElements.Count - 1; i++)
             {
-                XmlElement element = (XmlElement)entryElements[i];
-                XmlElement contentElement = (XmlElement)element.GetElementsByTagName("content")[0];
-                XmlElement propElement = (XmlElement)contentElement.GetElementsByTagName("m:properties")[0];
+                var element = (XmlElement)entryElements[i];
+                var contentElement = (XmlElement)element.GetElementsByTagName("content")[0];
+                var propElement = (XmlElement)contentElement.GetElementsByTagName("m:properties")[0];
                 result.Add(new CoffeeShop { 
                     EntityId = GetStringValue(propElement, "d:EntityID"), 
                     Latitude = GetDoubleValue(propElement, "d:Latitude"),
@@ -74,13 +71,13 @@ namespace BsdsApi
 
         private string GetStringValue(XmlElement element, string tag)
         {
-            return ((XmlElement)element.GetElementsByTagName(tag)[0]).InnerText;
+            return element.GetElementsByTagName(tag)[0].InnerText;
         }
 
         private double GetDoubleValue(XmlElement element, string tag) 
         {
             var stringValue = GetStringValue(element, tag);
-            double doubleValue = 0;
+            double doubleValue;
             Double.TryParse(stringValue, out doubleValue);
             return doubleValue;
         }
@@ -88,7 +85,7 @@ namespace BsdsApi
         private int GetIntValue(XmlElement element, string tag)
         {
             var stringValue = GetStringValue(element, tag);
-            int intValue = 0;
+            int intValue;
             Int32.TryParse(stringValue, out intValue);
             return intValue;
         }
@@ -111,11 +108,25 @@ namespace BsdsApi
         {
             try
             {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                var request = WebRequest.Create(requestUrl) as HttpWebRequest;
+                if (request == null)
+                {
+                    return null;
+                }
+                var response = request.GetResponse() as HttpWebResponse;
+                if (response == null)
+                {
+                    return null;
+                }
 
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(response.GetResponseStream());
+                var xmlDoc = new XmlDocument();
+                var responseStream = response.GetResponseStream();
+                if (responseStream == null)
+                {
+                    return null;
+                }
+
+                xmlDoc.Load(responseStream);
                 return (xmlDoc);
             }
             catch (Exception e)
