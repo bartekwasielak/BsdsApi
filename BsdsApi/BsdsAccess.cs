@@ -14,10 +14,16 @@ namespace WebMuses.PME.Core
         private const string DataEntityName = "FourthCoffeeShops";
         private const string UrlBase = "http://spatial.virtualearth.net/REST/v1/data";
         private const string RadiusSearchTemplate = "{0}/{1}/{2}/{3}?spatialFilter=nearby({4},{5},{6})&key={7}";
+        private const string GetIdTemplate = "{0}/{1}/{2}/{3}({4})?key={5}";
 
         public BsdsAccess(string bingMapsKey)
         {
             _bingMapsKey = bingMapsKey;
+        }
+
+        public BsdsAccess()
+        {
+            _bingMapsKey = "Av1Pxhxmw1q2Pa8yYeRoO6nRSQttINrDGcmvmPfHzAfokdT0alyVHecHDPNC0oAO";
         }
 
         public IList<CoffeeShop> FindByAreaRadius(double latitude, double longitude, double radiusInKms)
@@ -28,6 +34,23 @@ namespace WebMuses.PME.Core
                 _bingMapsKey);
             XmlDocument response = GetXmlResponse(requestUrl);
             return ProcessEntityElements(response);
+        }
+
+        public CoffeeShop GetCoffeeShopById(int id)
+        {
+            if (id > 0)
+            {
+                id *= -1;
+            }
+            string requestUrl = string.Format(GetIdTemplate, UrlBase, DataSourceId, DataSourceName, DataEntityName, id,
+                                              _bingMapsKey);
+            XmlDocument response = GetXmlResponse(requestUrl);
+            var list = ProcessEntityElements(response);
+            if (list.Count > 0)
+            {
+                return list[0];
+            }
+            return null;
         }
 
         private IList<CoffeeShop> ProcessEntityElements(XmlDocument response)
