@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BsdsApi
+namespace WebMuses.PME.Core
 {
     public class CoffeeShop
     {

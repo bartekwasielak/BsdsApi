@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BsdsApi", "BsdsApi\BsdsApi.csproj", "{03388CDD-F782-4D00-A8D8-82EACB8AD1B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMuses.PME.Core", "BsdsApi\WebMuses.PME.Core.csproj", "{03388CDD-F782-4D00-A8D8-82EACB8AD1B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{7810E23D-56CD-41ED-830D-DEDDA2810A29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMuses.PME.SampleConsole", "TestApp\WebMuses.PME.SampleConsole.csproj", "{7810E23D-56CD-41ED-830D-DEDDA2810A29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

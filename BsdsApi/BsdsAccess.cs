@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Net;
 using System.Xml;
 
-namespace BsdsApi
+namespace WebMuses.PME.Core
 {
     public class BsdsAccess
     {

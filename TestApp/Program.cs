@@ -1,6 +1,6 @@
-﻿using BsdsApi;
+﻿using WebMuses.PME.Core;
 
-namespace TestApp
+namespace WebMuses.PME.SampleConsole
 {
     class Program
     {
