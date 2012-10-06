@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using WebMuses.PME.Core;
+using WebMuses.PME.Samples.Helpers;
 
 namespace WebMuses.PME.Samples.Controllers
 {
@@ -25,6 +27,28 @@ namespace WebMuses.PME.Samples.Controllers
             ViewBag.Text = GetCoffeeShopNameAndMoreDetails(id);
             return View("Index");
         }
+
+        public ActionResult IndexMulti(double lat, double lon, double r)
+        {
+            ViewBag.Message = "Task 4";
+            BsdsAccess bsdsAccess = new BsdsAccess();
+            CoffeeShop[] shops = bsdsAccess.FindByAreaRadius(lat, lon, r);
+
+            //List<CoffeeShop> openShops = new List<CoffeeShop>();
+            //foreach (CoffeeShop shop in shops)
+            //{
+            //    if (shop.Open == 800)
+            //    {
+            //        openShops.Add(shop);
+            //    }
+            //}
+            //shops = openShops.ToArray();
+
+            PrintHelper printHelper = new PrintHelper();
+            ViewBag.Text = printHelper.PrintTable(shops);
+            return View("Index");
+        }
+
 
         private string GetCoffeeShopName(int id)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Xml;
 
@@ -23,17 +24,17 @@ namespace WebMuses.PME.Core
 
         public BsdsAccess()
         {
-            _bingMapsKey = "Av1Pxhxmw1q2Pa8yYeRoO6nRSQttINrDGcmvmPfHzAfokdT0alyVHecHDPNC0oAO";
+            
         }
 
-        public IList<CoffeeShop> FindByAreaRadius(double latitude, double longitude, double radiusInKms)
+        public CoffeeShop[] FindByAreaRadius(double latitude, double longitude, double radiusInKms)
         {
             string requestUrl = string.Format(RadiusSearchTemplate, UrlBase, DataSourceId,
                 DataSourceName, DataEntityName, latitude.ToString(CultureInfo.InvariantCulture),
                 longitude.ToString(CultureInfo.InvariantCulture), radiusInKms.ToString(CultureInfo.InvariantCulture),
                 _bingMapsKey);
             XmlDocument response = GetXmlResponse(requestUrl);
-            return ProcessEntityElements(response);
+            return ProcessEntityElements(response).ToArray();
         }
 
         public CoffeeShop GetCoffeeShopById(int id)
