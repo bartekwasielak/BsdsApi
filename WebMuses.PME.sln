@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMuses.PME.SampleConsole"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMuses.PME.Samples", "WebMuses.PME.Samples\WebMuses.PME.Samples.csproj", "{52F522AA-83B6-43DB-843B-16B7E9B5905B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMuses.PME.Samples2", "WebMuses.PME.Samples2\WebMuses.PME.Samples2.csproj", "{1A32D66F-5DE5-4242-B6C6-F3D9A482803B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{52F522AA-83B6-43DB-843B-16B7E9B5905B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52F522AA-83B6-43DB-843B-16B7E9B5905B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52F522AA-83B6-43DB-843B-16B7E9B5905B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A32D66F-5DE5-4242-B6C6-F3D9A482803B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A32D66F-5DE5-4242-B6C6-F3D9A482803B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A32D66F-5DE5-4242-B6C6-F3D9A482803B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A32D66F-5DE5-4242-B6C6-F3D9A482803B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
