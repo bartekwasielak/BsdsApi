@@ -206,9 +206,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BsdsApi\WebMuses.PME.Core.csproj">
+    <ProjectReference Include="..\BsdsApi\WebMuses.Core.csproj">
       <Project>{03388cdd-f782-4d00-a8d8-82eacb8ad1b8}</Project>
-      <Name>WebMuses.PME.Core</Name>
+      <Name>WebMuses.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

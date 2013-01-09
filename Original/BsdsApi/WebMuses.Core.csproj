@@ -7,8 +7,8 @@
     <ProjectGuid>{03388CDD-F782-4D00-A8D8-82EACB8AD1B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebMuses.PME.Core</RootNamespace>
-    <AssemblyName>WebMuses.PME.Core</AssemblyName>
+    <RootNamespace>WebMuses.Core</RootNamespace>
+    <AssemblyName>WebMuses.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

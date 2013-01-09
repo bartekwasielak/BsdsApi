@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebMuses.PME.Core
+namespace WebMuses.Core
 {
     public class CoffeeShop
     {

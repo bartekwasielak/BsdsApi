@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Xml;
 
-namespace WebMuses.PME.Core
+namespace WebMuses.Core
 {
-    public class BsdsAccess
+    public class DataAccess
     {
         private readonly string _bingMapsKey;
         private const string DataSourceId = "20181f26d9e94c81acdf9496133d4f23";
@@ -17,12 +17,12 @@ namespace WebMuses.PME.Core
         private const string RadiusSearchTemplate = "{0}/{1}/{2}/{3}?spatialFilter=nearby({4},{5},{6})&key={7}";
         private const string GetIdTemplate = "{0}/{1}/{2}/{3}({4})?key={5}";
 
-        public BsdsAccess(string bingMapsKey)
+        public DataAccess(string bingMapsKey)
         {
             _bingMapsKey = bingMapsKey;
         }
 
-        public BsdsAccess()
+        public DataAccess()
         {
             _bingMapsKey = "Av1Pxhxmw1q2Pa8yYeRoO6nRSQttINrDGcmvmPfHzAfokdT0alyVHecHDPNC0oAO";
         }
