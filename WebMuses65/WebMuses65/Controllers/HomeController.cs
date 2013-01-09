@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMuses.Core;
+using WebMuses65.Helpers;
 
 namespace WebMuses65.Controllers
 {
@@ -73,7 +74,22 @@ namespace WebMuses65.Controllers
 
         public ActionResult IndexMulti(double lat, double lon, double r)
         {
+            DataAccess dataAccess = new DataAccess();
+            CoffeeShop[] shops = dataAccess.FindByAreaRadius(lat, lon, r);
+            PrinterHelper printerHelper = new PrinterHelper();
 
+            List<CoffeeShop> openShops = new List<CoffeeShop>();
+            foreach (CoffeeShop shop in shops)
+            {
+                if (shop.Open == 800)
+                {
+                    openShops.Add(shop);
+                }
+            }
+            shops = openShops.ToArray();
+
+            ViewBag.Message = printerHelper.Print(shops);
+            return View("Index");
         }
 
         public ActionResult About()
